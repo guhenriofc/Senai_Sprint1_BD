@@ -1,0 +1,50 @@
+CREATE DATABASE SENAI_HROADS_TARDE
+
+USE SENAI_HROADS_TARDE;
+
+CREATE TABLE Classes
+(
+	idClasse INT PRIMARY KEY IDENTITY
+
+	,Nome VARCHAR(200) NOT NULL
+);
+
+CREATE TABLE Personagens
+(
+	idPersonagem INT PRIMARY KEY IDENTITY
+
+	,idClasse INT FOREIGN KEY REFERENCES Classes(idClasse)
+
+	,Nome VARCHAR(200) NOT NULL
+
+	,Vida INT NOT NULL
+
+	,Mana INT NOT NULL
+
+	,DataDeAtualização DATE
+	
+	,DataDeCriação DATE NOT NULL
+);
+
+CREATE TABLE Tipo_de_habilidade
+(
+	idTipo INT PRIMARY KEY IDENTITY
+
+	,Nome VARCHAR(200) NOT NULL
+);
+
+CREATE TABLE Habilidades
+(
+	idHabilidade INT PRIMARY KEY IDENTITY
+
+	,idTipo INT FOREIGN KEY REFERENCES Tipo_de_habilidade(idTipo)
+
+	,Nome VARCHAR(200) NOT NULL
+);
+
+CREATE TABLE HabilidadeClass
+(
+	idClasse INT FOREIGN KEY REFERENCES Classes(idClasse)
+
+	,idHabilidade INT FOREIGN KEY REFERENCES Habilidades(idHabilidade)
+);
